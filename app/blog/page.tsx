@@ -1,251 +1,209 @@
-import {
-  Calculator,
-  BookOpen,
-  TrendingUp,
-  DollarSign,
-  PiggyBank,
-  CreditCard,
-  Wallet,
-  Target,
-  Shield,
-  Home,
-} from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Calendar, ArrowRight } from "lucide-react"
+
+export const metadata = {
+  title: "PDF Tips, Tricks & Guides | imakepdf Blog",
+  description:
+    "Learn how to work with PDFs efficiently. Expert guides on PDF conversion, compression, editing, and more.",
+  keywords: "PDF tips, PDF guides, PDF converter, PDF tools, document management",
+}
+
+const blogPosts = [
+  {
+    slug: "pdf-to-word-converter-guide-2025",
+    title: "Complete Guide to PDF to Word Conversion in 2025",
+    excerpt:
+      "Learn the best methods to convert PDF to Word documents while preserving formatting, images, and layout. Free tools and expert tips included.",
+    date: "2025-01-15",
+    category: "Conversion",
+    readTime: "8 min read",
+  },
+  {
+    slug: "compress-pdf-without-losing-quality",
+    title: "How to Compress PDF Files Without Losing Quality",
+    excerpt:
+      "Discover proven techniques to reduce PDF file size while maintaining document quality. Perfect for email attachments and web uploads.",
+    date: "2025-01-12",
+    category: "Optimization",
+    readTime: "6 min read",
+  },
+  {
+    slug: "merge-multiple-pdfs-efficiently",
+    title: "Merge Multiple PDFs Efficiently: A Step-by-Step Guide",
+    excerpt:
+      "Master the art of combining PDF files. Learn how to merge, reorder, and organize multiple PDFs into one professional document.",
+    date: "2025-01-10",
+    category: "Organization",
+    readTime: "7 min read",
+  },
+  {
+    slug: "protect-pdf-with-password",
+    title: "Secure Your PDFs: Complete Password Protection Guide",
+    excerpt:
+      "Learn how to add password protection to PDFs, encrypt sensitive documents, and control access permissions effectively.",
+    date: "2025-01-08",
+    category: "Security",
+    readTime: "9 min read",
+  },
+  {
+    slug: "pdf-to-excel-conversion-tips",
+    title: "Convert PDF to Excel: Extract Data Like a Pro",
+    excerpt:
+      "Transform PDF tables into editable Excel spreadsheets. Tips for maintaining data integrity and formatting during conversion.",
+    date: "2025-01-05",
+    category: "Conversion",
+    readTime: "7 min read",
+  },
+  {
+    slug: "edit-pdf-online-free",
+    title: "How to Edit PDF Files Online for Free in 2025",
+    excerpt:
+      "Complete guide to editing PDFs without expensive software. Add text, images, signatures, and annotations with ease.",
+    date: "2025-01-03",
+    category: "Editing",
+    readTime: "10 min read",
+  },
+  {
+    slug: "pdf-seo-optimization-guide",
+    title: "PDF SEO: How to Optimize PDFs for Search Engines",
+    excerpt:
+      "Make your PDF documents discoverable in Google. Learn about metadata, file naming, accessibility, and ranking factors.",
+    date: "2024-12-28",
+    category: "SEO",
+    readTime: "11 min read",
+  },
+  {
+    slug: "split-pdf-pages-guide",
+    title: "Split PDF: Extract and Organize Pages Effectively",
+    excerpt:
+      "Master PDF splitting techniques. Extract specific pages, create separate documents, and manage large PDFs efficiently.",
+    date: "2024-12-25",
+    category: "Organization",
+    readTime: "6 min read",
+  },
+  {
+    slug: "jpg-to-pdf-conversion-best-practices",
+    title: "JPG to PDF Conversion: Best Practices for 2025",
+    excerpt:
+      "Convert images to PDF format perfectly. Learn about resolution, file size optimization, and maintaining image quality.",
+    date: "2024-12-22",
+    category: "Conversion",
+    readTime: "8 min read",
+  },
+  {
+    slug: "watermark-pdf-documents",
+    title: "Add Watermarks to PDFs: Professional Guide",
+    excerpt:
+      "Protect your documents with custom watermarks. Learn about transparency, positioning, and watermark best practices.",
+    date: "2024-12-20",
+    category: "Security",
+    readTime: "7 min read",
+  },
+  {
+    slug: "ocr-pdf-scanning-guide",
+    title: "OCR for PDFs: Convert Scanned Documents to Searchable Text",
+    excerpt:
+      "Turn scanned PDFs into searchable, editable documents. Complete guide to OCR technology and its applications.",
+    date: "2024-12-18",
+    category: "Technology",
+    readTime: "9 min read",
+  },
+  {
+    slug: "rotate-pdf-pages-efficiently",
+    title: "How to Rotate PDF Pages: Quick and Easy Methods",
+    excerpt:
+      "Fix document orientation issues instantly. Learn to rotate individual pages or entire PDF documents in seconds.",
+    date: "2024-12-15",
+    category: "Editing",
+    readTime: "5 min read",
+  },
+  {
+    slug: "word-to-pdf-conversion-guide",
+    title: "Word to PDF: Preserve Formatting and Quality",
+    excerpt:
+      "Convert Word documents to PDF format flawlessly. Maintain fonts, images, hyperlinks, and document structure.",
+    date: "2024-12-12",
+    category: "Conversion",
+    readTime: "7 min read",
+  },
+  {
+    slug: "pdf-accessibility-compliance",
+    title: "PDF Accessibility: Make Documents Compliant with WCAG",
+    excerpt:
+      "Create accessible PDFs that everyone can read. Learn about tags, alt text, reading order, and accessibility standards.",
+    date: "2024-12-10",
+    category: "Accessibility",
+    readTime: "12 min read",
+  },
+  {
+    slug: "pdf-tools-productivity-hacks",
+    title: "10 PDF Productivity Hacks Every Professional Should Know",
+    excerpt:
+      "Boost your workflow with these essential PDF tips. Time-saving techniques for daily document management tasks.",
+    date: "2024-12-08",
+    category: "Productivity",
+    readTime: "8 min read",
+  },
+]
 
 export default function BlogPage() {
-  const articles = [
-    {
-      title: "Understanding Interest Rates: A Complete Guide",
-      description:
-        "Learn how interest rates work, why they matter, and how they impact your loans, savings, and investments. Discover the difference between APR, APY, and nominal rates.",
-      icon: TrendingUp,
-      readTime: "8 min read",
-      link: "/blog/understanding-interest-rates",
-    },
-    {
-      title: "How to Compare Mortgage Rates Effectively",
-      description:
-        "Shopping for a mortgage? Learn the essential factors to consider beyond just the interest rate, including points, fees, loan terms, and how to calculate your true cost.",
-      icon: DollarSign,
-      readTime: "10 min read",
-      link: "/blog/mortgage-rates-guide",
-    },
-    {
-      title: "The Power of Compound Interest in Savings",
-      description:
-        "Discover why Einstein allegedly called compound interest the eighth wonder of the world. Learn how to harness its power to grow your wealth exponentially over time.",
-      icon: PiggyBank,
-      readTime: "6 min read",
-      link: "/blog/compound-interest-guide",
-    },
-    {
-      title: "Loan Amortization Explained Simply",
-      description:
-        "Understand how your loan payments are split between principal and interest over time. Learn why your early payments go mostly to interest and how extra payments can save you thousands.",
-      icon: Calculator,
-      readTime: "7 min read",
-      link: "/blog/loan-amortization-explained",
-    },
-    {
-      title: "Fixed vs Variable Interest Rates: Which to Choose",
-      description:
-        "Explore the pros and cons of fixed and variable rate loans. Learn when each option makes sense and how to decide which is right for your financial situation.",
-      icon: CreditCard,
-      readTime: "9 min read",
-      link: "/blog/fixed-vs-variable-rates",
-    },
-    {
-      title: "10 Ways to Lower Your Loan Interest Rate",
-      description:
-        "Discover practical strategies to qualify for better rates, from improving your credit score to choosing the right loan term, refinancing options, and negotiation tactics.",
-      icon: BookOpen,
-      readTime: "11 min read",
-      link: "/blog/lower-loan-rates",
-    },
-    {
-      title: "Building an Emergency Fund: Step-by-Step Guide",
-      description:
-        "Learn why emergency funds are crucial, how much you need, where to keep it, and practical strategies to build your safety net even on a tight budget.",
-      icon: Shield,
-      readTime: "8 min read",
-      link: "/blog/emergency-fund-guide",
-    },
-    {
-      title: "Debt Snowball vs Avalanche: Which Method Works Best",
-      description:
-        "Compare the two most popular debt payoff strategies. Understand the psychology and math behind each method to choose the right approach for your situation.",
-      icon: Target,
-      readTime: "9 min read",
-      link: "/blog/debt-payoff-strategies",
-    },
-    {
-      title: "First-Time Homebuyer's Financial Checklist",
-      description:
-        "Essential financial preparation steps before buying your first home. Learn about down payments, closing costs, credit requirements, and hidden expenses to budget for.",
-      icon: Home,
-      readTime: "12 min read",
-      link: "/blog/first-time-homebuyer-guide",
-    },
-    {
-      title: "How Credit Scores Affect Your Interest Rates",
-      description:
-        "Discover the direct relationship between credit scores and interest rates. See real examples of how much a better score can save you and actionable tips to improve yours.",
-      icon: TrendingUp,
-      readTime: "7 min read",
-      link: "/blog/credit-score-impact",
-    },
-    {
-      title: "Retirement Savings: How Much Do You Really Need",
-      description:
-        "Calculate your retirement needs with practical formulas, understand the 4% rule, and learn strategies to catch up if you're behind on retirement savings.",
-      icon: Wallet,
-      readTime: "10 min read",
-      link: "/blog/retirement-savings-guide",
-    },
-    {
-      title: "Refinancing Your Mortgage: When Does It Make Sense",
-      description:
-        "Learn when refinancing can save you money, how to calculate your break-even point, what costs to expect, and common refinancing mistakes to avoid.",
-      icon: DollarSign,
-      readTime: "9 min read",
-      link: "/blog/mortgage-refinancing-guide",
-    },
-  ]
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Calculator className="h-5 w-5" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold leading-tight">FinanceFlow Pro</h1>
-              <p className="text-xs text-muted-foreground">Smart Financial Tools</p>
-            </div>
-          </Link>
-          <nav className="flex items-center gap-6">
-            <Link href="/" className="text-sm font-medium hover:text-primary">
-              Home
-            </Link>
-            <Link href="/about" className="text-sm font-medium hover:text-primary">
-              About
-            </Link>
-            <Link href="/contact" className="text-sm font-medium hover:text-primary">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col">
+      <Header />
 
-      {/* Hero */}
-      <section className="border-b bg-muted/30 py-16">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mb-4 text-4xl font-bold tracking-tight text-balance md:text-5xl">
-              Financial Blog & Expert Guides
-            </h1>
-            <p className="text-lg text-muted-foreground text-pretty leading-relaxed">
-              Expert insights and comprehensive guides to help you understand interest rates, loans, savings, and make
-              better financial decisions.
+      <main className="flex-1 py-16">
+        <div className="container mx-auto max-w-7xl px-6">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">PDF Tips & Guides</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Expert advice, tutorials, and best practices for working with PDF documents
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* Articles Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article, index) => {
-              const Icon = article.icon
-              return (
-                <Card key={index} className="transition-shadow hover:shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`}>
+                <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer hover:border-primary/50">
                   <CardHeader>
-                    <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Icon className="h-6 w-6" />
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">
+                        {post.category}
+                      </span>
+                      <span>•</span>
+                      <span>{post.readTime}</span>
                     </div>
-                    <CardTitle className="text-xl leading-snug">{article.title}</CardTitle>
-                    <CardDescription className="mt-2 leading-relaxed">{article.description}</CardDescription>
+                    <CardTitle className="text-xl mb-2 line-clamp-2">{post.title}</CardTitle>
+                    <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">{article.readTime}</span>
-                      {article.link ? (
-                        <Link href={article.link} className="text-sm font-medium text-primary hover:underline">
-                          Read Article →
-                        </Link>
-                      ) : (
-                        <span className="text-sm font-medium text-muted-foreground">Coming Soon</span>
-                      )}
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Calendar className="h-4 w-4" />
+                        <time dateTime={post.date}>
+                          {new Date(post.date).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </time>
+                      </div>
+                      <div className="flex items-center gap-1 text-primary font-medium">
+                        Read more
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
-              )
-            })}
+              </Link>
+            ))}
           </div>
         </div>
-      </section>
+      </main>
 
-      {/* Why Read Section */}
-      <section className="border-t bg-muted/30 py-16">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-3xl">
-            <h2 className="mb-8 text-center text-3xl font-bold">Why Financial Education Matters</h2>
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="mb-2 text-xl font-semibold">Make Confident Decisions</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Understanding financial concepts empowers you to make informed decisions about loans, mortgages,
-                    credit cards, and investments. Knowledge is your best tool for financial success.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="mb-2 text-xl font-semibold">Save Thousands of Dollars</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Knowing how to compare rates, understand fees, and calculate true costs can save you thousands over
-                    the life of a loan or significantly boost your savings returns.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="mb-2 text-xl font-semibold">Avoid Common Pitfalls</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Many people make costly financial mistakes simply because they don't understand the terms, rates, or
-                    implications. Our guides help you avoid these common errors.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t bg-muted/50 py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} FinanceFlow Pro. All rights reserved.
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/privacy-policy" className="text-muted-foreground hover:text-primary">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-service" className="text-muted-foreground hover:text-primary">
-              Terms of Service
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
