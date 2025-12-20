@@ -8,70 +8,32 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://imakepdf.site"),
-  title: {
-    default: "imakepdf.site - Free Online PDF Tools | Convert, Merge, Split, Compress PDFs",
-    template: "%s | imakepdf.site",
-  },
+  title: "FinanceFlow Pro - Free Financial Calculator & Daily Rate Comparison Tools",
   description:
-    "Free online PDF tools to convert, merge, split, compress, edit, and manipulate PDF files. Fast, secure, and easy to use. No registration required. 29 PDF tools available.",
+    "Compare live interest rates updated daily, calculate mortgage payments, plan investments, and eliminate debt with professional financial calculators. Free tools for mortgages, loans, savings, investments, and debt payoff strategies. Make informed money decisions with accurate, comprehensive calculators trusted by thousands.",
+  keywords:
+    "financial calculator, daily interest rates, mortgage calculator, investment calculator, debt payoff calculator, loan calculator, savings calculator, rate comparison, compound interest, loan amortization, financial planning tools, mortgage rates today, credit card rates, auto loan rates, savings account rates, retirement planning, debt elimination, avalanche method, snowball method",
   generator: "v0.app",
-  keywords: [
-    "PDF tools",
-    "merge PDF",
-    "split PDF",
-    "convert PDF to Word",
-    "PDF to JPG",
-    "compress PDF",
-    "online PDF editor",
-    "PDF converter",
-    "free PDF tools",
-    "PDF to Excel",
-    "Word to PDF",
-    "edit PDF online",
-    "combine PDF",
-    "PDF security",
-    "watermark PDF",
-    "rotate PDF",
-    "OCR PDF",
-    "sign PDF",
-  ],
-  authors: [{ name: "imakepdf.site" }],
-  creator: "imakepdf.site",
-  publisher: "imakepdf.site",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  metadataBase: new URL("https://flowfinancepro.vercel.app"),
+  alternates: {
+    canonical: "/",
   },
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://imakepdf.site",
-    title: "imakepdf.site - Free Online PDF Tools",
+    title: "FinanceFlow Pro - Free Financial Calculator & Daily Rate Comparison Tools",
     description:
-      "Free online PDF tools to convert, merge, split, compress, and edit PDF files. Fast, secure, and easy to use.",
-    siteName: "imakepdf.site",
+      "Compare live interest rates updated daily, calculate mortgage payments, plan investments, and eliminate debt with professional financial calculators.",
+    url: "https://flowfinancepro.vercel.app",
+    siteName: "FinanceFlow Pro",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "imakepdf.site - Free Online PDF Tools",
+    title: "FinanceFlow Pro - Free Financial Calculator & Daily Rate Comparison Tools",
     description:
-      "Free online PDF tools to convert, merge, split, compress, and edit PDF files. Fast, secure, and easy to use.",
+      "Compare live interest rates updated daily, calculate mortgage payments, plan investments, and eliminate debt with professional financial calculators.",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: "https://imakepdf.site",
+  other: {
+    "google-site-verification": "sU1qkRzCBZp_1XnebjyViYxn3DnhLakxKNYg9yAOOa8",
   },
   icons: {
     icon: [
@@ -100,29 +62,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3W4F1BY6G" />
         <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: "imakepdf.site",
-              url: "https://imakepdf.site",
-              description: "Free online PDF tools to convert, merge, split, compress, edit, and manipulate PDF files.",
-              applicationCategory: "UtilityApplication",
-              operatingSystem: "Web Browser",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
-              },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.8",
-                ratingCount: "1250",
-              },
-            }),
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-Q3W4F1BY6G');
+            `,
           }}
+        />
+        <meta name="google-site-verification" content="sU1qkRzCBZp_1XnebjyViYxn3DnhLakxKNYg9yAOOa8" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5429348010446520"
+          crossOrigin="anonymous"
         />
       </head>
       <body className={`font-sans antialiased`}>
