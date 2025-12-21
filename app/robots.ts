@@ -1,19 +1,15 @@
 import type { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = "https://financeflowpro.vercel.app" // Update this to your actual domain
+
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/dashboard/", "/auth/"],
-      },
-      {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: ["/api/", "/dashboard/", "/auth/"],
       },
     ],
-    sitemap: "https://imakepdf.site/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }
