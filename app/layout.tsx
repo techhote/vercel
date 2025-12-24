@@ -76,7 +76,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="sU1qkRzCBZp_1XnebjyViYxn3DnhLakxKNYg9yAOOa8" />
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5429348010446520"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2437442194177710"
           crossOrigin="anonymous"
         />
       </head>
