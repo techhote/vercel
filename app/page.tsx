@@ -654,7 +654,8 @@ export default function FinanceFlowPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2437442194177710"
+     crossorigin="anonymous"></script>
 
       <footer className="border-t bg-muted/50 py-12">
         <div className="container mx-auto px-4">
@@ -757,7 +758,7 @@ export default function FinanceFlowPage() {
 
           <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
             <p>
-              &copy; {new Date().getFullYear()} FinanceFlow Pro. All rights reserved. Built to help you make smarter
+              &copy; {new Date().getFullYear()} FinanceFlow Pro by Ahmad Sohail. All rights reserved. Built to help you make smarter
               financial decisions.
             </p>
           </div>
