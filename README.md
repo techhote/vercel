@@ -76,27 +76,27 @@ A comprehensive, production-ready web application for PDF manipulation and manag
 ### Installation
 
 1. **Clone the repository:**
-\`\`\`bash
+```bash
 git clone https://github.com/yourusername/imakepdf-site.git
 cd imakepdf-site
-\`\`\`
+```
 
 2. **Install dependencies:**
-\`\`\`bash
+```bash
 pnpm install
 # or
 npm install
-\`\`\`
+```
 
 3. **Set up environment variables:**
 
 Copy `.env.example` to `.env.local`:
-\`\`\`bash
+```bash
 cp .env.example .env.local
-\`\`\`
+```
 
 Fill in your environment variables:
-\`\`\`env
+```env
 # Supabase
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
@@ -115,18 +115,18 @@ CPANEL_PUBLIC_URL=https://yourdomain.com/pdf-files
 
 # Database
 DATABASE_URL=your_database_url
-\`\`\`
+```
 
 4. **Run database migrations:**
 
 Execute the SQL script in `scripts/001-setup-database.sql` in your Supabase SQL editor.
 
 5. **Run the development server:**
-\`\`\`bash
+```bash
 pnpm dev
 # or
 npm run dev
-\`\`\`
+```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -153,9 +153,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/imakepdf-site)
 
 1. Click the button above or run:
-\`\`\`bash
+```bash
 vercel
-\`\`\`
+```
 
 2. Configure environment variables in Vercel dashboard
 3. Connect Supabase integration
@@ -171,7 +171,7 @@ The app can be deployed to any platform that supports Next.js:
 
 ## Project Structure
 
-\`\`\`
+```
 imakepdf-site/
 ├── app/                    # Next.js App Router
 │   ├── api/               # API routes
@@ -194,7 +194,7 @@ imakepdf-site/
 ├── cpanel-scripts/        # cPanel hosting scripts
 ├── public/               # Static assets
 └── scripts/              # Database migrations
-\`\`\`
+```
 
 ## API Routes
 
