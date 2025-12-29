@@ -331,7 +331,8 @@ export default function HomePage() {
                   Files are automatically deleted after 24 hours. Your privacy is our priority
                 </p>
               </div>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2437442194177710"
+     crossorigin="anonymous"></script>
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <FileText className="h-8 w-8 text-primary" />
