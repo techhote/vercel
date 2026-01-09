@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://imakepdf.site"
-  const currentDate = new Date().toISOString()
+  const currentDate = new Date().toISOString().split("T")[0]
 
   // Main pages
   const mainPages = [
