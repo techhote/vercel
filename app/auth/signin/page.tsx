@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
@@ -13,12 +12,14 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useToast } from "@/hooks/use-toast"
-import { Loader2 } from "lucide-react"
+import { Loader2, AlertCircle } from "lucide-react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function SignInPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const searchParams = useSearchParams()
   const { toast } = useToast()
@@ -26,30 +27,50 @@ export default function SignInPage() {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError(null)
 
     try {
-      const supabase = getSupabaseBrowserClient()
-      const { error } = await supabase.auth.signInWithPassword({
+      let supabase
+      try {
+        supabase = getSupabaseBrowserClient()
+      } catch (initError) {
+        setError("Authentication service is not configured. Please contact support.")
+        setIsLoading(false)
+        return
+      }
+
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
       })
 
-      if (error) throw error
+      if (signInError) {
+        if (signInError.message.includes("Invalid login credentials")) {
+          setError("Invalid email or password. Please try again.")
+        } else if (signInError.message.includes("Email not confirmed")) {
+          setError("Please check your email and confirm your account before signing in.")
+        } else {
+          setError(signInError.message)
+        }
+        return
+      }
 
-      toast({
-        title: "Success",
-        description: "Signed in successfully!",
-      })
+      if (data?.session) {
+        toast({
+          title: "Success",
+          description: "Signed in successfully!",
+        })
 
-      const redirect = searchParams.get("redirect") || "/dashboard"
-      router.push(redirect)
-      router.refresh()
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to sign in",
-        variant: "destructive",
-      })
+        const redirect = searchParams.get("redirect") || "/dashboard"
+        router.push(redirect)
+        router.refresh()
+      }
+    } catch (err) {
+      if (err instanceof TypeError && err.message === "Failed to fetch") {
+        setError("Unable to connect to authentication service. Please check your internet connection and try again.")
+      } else {
+        setError(err instanceof Error ? err.message : "An unexpected error occurred")
+      }
     } finally {
       setIsLoading(false)
     }
@@ -67,6 +88,13 @@ export default function SignInPage() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSignIn} className="space-y-4">
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input

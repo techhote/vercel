@@ -120,8 +120,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug]
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = blogPosts[slug]
 
   if (!post) {
     return {
@@ -136,8 +137,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-function BlogPostComponent({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug]
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = blogPosts[slug]
 
   if (!post) {
     notFound()
@@ -148,19 +150,19 @@ function BlogPostComponent({ params }: { params: { slug: string } }) {
       .split("\n\n")
       .map((paragraph) => {
         if (paragraph.startsWith("# ")) {
-          return `<h1>${paragraph.replace(/^# /, "")}</h1>`
+          return `<h1 class="text-4xl font-bold mb-6">${paragraph.replace(/^# /, "")}</h1>`
         }
         if (paragraph.startsWith("## ")) {
-          return `<h2>${paragraph.replace(/^## /, "")}</h2>`
+          return `<h2 class="text-2xl font-bold mt-8 mb-4">${paragraph.replace(/^## /, "")}</h2>`
         }
         if (paragraph.startsWith("### ")) {
-          return `<h3>${paragraph.replace(/^### /, "")}</h3>`
+          return `<h3 class="text-xl font-semibold mt-6 mb-3">${paragraph.replace(/^### /, "")}</h3>`
         }
         if (paragraph.startsWith("- ")) {
-          const items = paragraph.split("\n").map((line) => `<li>${line.replace(/^- /, "")}</li>`)
-          return `<ul>${items.join("")}</ul>`
+          const items = paragraph.split("\n").map((line) => `<li class="ml-4">${line.replace(/^- /, "")}</li>`)
+          return `<ul class="list-disc pl-6 my-4 space-y-2">${items.join("")}</ul>`
         }
-        return `<p>${paragraph}</p>`
+        return `<p class="text-lg leading-relaxed mb-4 text-muted-foreground">${paragraph}</p>`
       })
       .join("")
   }
@@ -206,7 +208,7 @@ function BlogPostComponent({ params }: { params: { slug: string } }) {
 
           {/* Main Content */}
           <div
-            className="prose prose-lg max-w-none prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
+            className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
           />
 
@@ -227,5 +229,3 @@ function BlogPostComponent({ params }: { params: { slug: string } }) {
     </div>
   )
 }
-
-export default BlogPostComponent
